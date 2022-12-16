@@ -1,0 +1,27 @@
+router.get("/", async function (req, res, next) {
+
+  // let cartCount = await userHelpers.getCartCount(req.session.user._id);
+      let cartCount= null;
+      bannerHelpers.getallbanner().then((banners)=>{
+      categoryHelpers.getallcategory().then(async(data)=>{
+        
+
+      if(req.session.loggedIn){
+
+        
+        let person = req.session.user;
+         cartCount = await userHelpers.getCartCount(req.session.user._id);
+        res.render("user/user_homepage", { user: true ,data,banners,person,cartCount});
+      
+         
+      }
+        else {
+          res.render("user/user_homepage", { user: true ,data,banners});
+        }
+      
+     
+      })})
+   
+
+  
+});
