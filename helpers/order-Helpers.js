@@ -245,8 +245,8 @@ module.exports = {
                 "payment_method": "paypal"
             },
             "redirect_urls": {
-                "return_url": "http://localhost:3000/success/"+orderId,
-                "cancel_url": "http://localhost:3000/cancel"
+                "return_url": "https://footcart.ga/success/"+orderId,
+                "cancel_url": "https://footcart.ga//cancel"
             },
             "transactions": [{
                 // "item_list": {
