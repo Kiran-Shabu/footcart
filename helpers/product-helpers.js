@@ -16,10 +16,31 @@ module.exports = {
         })
 
     },
-
     getallproducts: () => {
         return new Promise(async (resolve, reject) => {
             let products = await db.get().collection(collections.product_collection).find().toArray()
+            resolve(products)
+
+        })
+    },
+    
+    getcasualproducts: () => {
+        return new Promise(async (resolve, reject) => {
+            let products = await db.get().collection(collections.product_collection).find({pcategory:"Casuals"}).toArray()
+            resolve(products)
+
+        })
+    },
+    getformalproducts: () => {
+        return new Promise(async (resolve, reject) => {
+            let products = await db.get().collection(collections.product_collection).find({pcategory:"Formals"}).toArray()
+            resolve(products)
+
+        })
+    },
+    getSportsproducts: () => {
+        return new Promise(async (resolve, reject) => {
+            let products = await db.get().collection(collections.product_collection).find({pcategory:"Sports"}).toArray()
             resolve(products)
 
         })
@@ -85,6 +106,16 @@ module.exports = {
                 })
         })
     },
+
+    searchProduct:(key)=>{
+        return new Promise(async(resolve, reject) => {
+            let result = await db.get().collection(collections.product_collection).find({Pname:{$regex:'.*' + key + '.*', $options:'i'}}).toArray()
+            console.log("rrrrrrrrrrrrr");
+            console.log(result);
+            resolve(result)
+            
+        })
+    }
 
     
 

@@ -131,8 +131,27 @@ router.get("/logout", function (req, res) {
 
 // ----------------------------------Casual Category-----------------------------------------------
 
+
+
+router.get("/all_products", (req, res) => { 
+  productHelpers.getallproducts().then(async(products)=>{
+   let person=req.session.user
+  
+    
+   if(req.session.loggedIn){
+     cartCount = await userHelpers.getCartCount(req.session.user._id);
+  res.render("user/casual_category", { user: true,products ,person,cartCount});
+}
+else{
+ res.render("user/casual_category", { user: true,products });
+}
+}
+)
+})
+
+
 router.get("/casual_category", (req, res) => { 
-   productHelpers.getallproducts().then(async(products)=>{
+   productHelpers.getcasualproducts().then(async(products)=>{
     let person=req.session.user
    
      
@@ -146,6 +165,39 @@ else{
 }
 )
 })
+
+router.get("/formal_category", (req, res) => { 
+  productHelpers.getformalproducts().then(async(products)=>{
+   let person=req.session.user
+  
+    
+   if(req.session.loggedIn){
+     cartCount = await userHelpers.getCartCount(req.session.user._id);
+  res.render("user/casual_category", { user: true,products ,person,cartCount});
+}
+else{
+ res.render("user/casual_category", { user: true,products });
+}
+}
+)
+})
+
+router.get("/sports_category", (req, res) => { 
+  productHelpers.getSportsproducts().then(async(products)=>{
+   let person=req.session.user
+  
+    
+   if(req.session.loggedIn){
+     cartCount = await userHelpers.getCartCount(req.session.user._id);
+  res.render("user/casual_category", { user: true,products ,person,cartCount});
+}
+else{
+ res.render("user/casual_category", { user: true,products });
+}
+}
+)
+})
+
 
 // --------------------------------OTP------------------------------------------------------
 router.get("/otplogin", (req, res) => {
@@ -537,5 +589,22 @@ router.post('/edit-user',verifyLogin,async(req,res)=>{
 
 })
 
+// -------------------------search------------------------
+
+router.get('/search',(req,res)=>{
+  let search=req.query.q
+  console.log("ppppppppp");
+  console.log(search);
+  productHelpers.searchProduct(search).then(async(products)=>{
+    // res.render("user/casual_category", { user: true,products });
+    if(req.session.loggedIn){
+      cartCount = await userHelpers.getCartCount(req.session.user._id);
+   res.render("user/casual_category", { user: true,products,cartCount});
+}
+else{
+  res.render("user/casual_category", { user: true,products });
+}
+}
+ ) })
 
 module.exports = router;

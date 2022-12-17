@@ -158,7 +158,7 @@
                                     </div><!-- End .details-filter-row -->
 
                                     <div class="product-details-action">
-                                        <a  class="btn-product btn-cart"  onclick="addToCart('{{this._id}}')" ><span>add to cart</span></a>
+                                        <a  class="btn-product btn-cart"  onclick="addToCart('{{product._id}}')" ><span>add to cart</span></a>
 
                                         <div class="details-action-wrapper">
                                             <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
@@ -559,21 +559,42 @@
     <script src="assets/js/main.js"></script>
 
 
-<script>
-       function addToCart(proId){
-    $.ajax({
-        url:'/add-to-cart/'+proId,
-        method: 'get',
-        success:(response)=>{
-           if(response.status){
-           
-                    let count=$('#cart-count').html()
-                    count=parseInt(count)+1
-                    $("#cart-count").html(count)
-           }
+
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function addToCart(proId) {
+            if(stock==0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'out of stock'
+            })}
+            else{
+
+            
+            $.ajax({
+                url: '/add-to-cart/' + proId,
+                method: 'get',
+                success: (response) => {  
+                    console.log("kkkkk")
+                    console.log(response)
+              
+                    if (response.status) {
+
+                    
+                        let count = $('#cart-count').html()
+                        count = parseInt(count) + 1
+                        $("#cart-count").html(count)
+                    }
+
+                    else{
+                        console.log("hai")
+                        location.href='/login'
+                    }
+                }
+            })
         }
-    })
-}
+        }
     </script>
 
 

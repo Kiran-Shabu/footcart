@@ -50,8 +50,11 @@
         <th scope="col">No</th>
         <th scope="col">Date</th>
         <th scope="col">Ordered by</th>
-        <th scope="col">Status</th>
-        <th scope="col">View Details</th>
+        <th scope="col">Coupon</th>
+        <th scope="col">Total Amount</th>
+         <th scope="col">View Details</th>
+        {{!-- <th scope="col">Status</th> --}}
+       
         
 
 
@@ -64,7 +67,7 @@
 
         <td>{{this.date}}</td>
         <td>{{this.name}}, <br>{{this.deliveryDetails.address}},<br>{{this.deliveryDetails.pincode}}</td>
-        <td>
+        {{!-- <td>
           
          
          <div class="accordion " id="accordionExample" style="max-width: 250px;">
@@ -126,7 +129,13 @@
       
 
      
-        </td>
+        </td> --}}
+         {{#if this.offerName}}
+                                    <td>{{this.offerName}} <br>{{this.offerPercentage}}%</td>
+                                    {{else}}
+                                    <td>Not Applied</td>
+                                    {{/if}}
+        <td> ₹{{this.totalAmount}}</td>
         <td><a href="/admin/order-details/{{this._id}}" class="btn btn-primary">View Details</a></td>
         
       </tr>

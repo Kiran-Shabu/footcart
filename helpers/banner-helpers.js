@@ -24,7 +24,17 @@ module.exports={
                 resolve(banner)
                 
             }) 
-        }    
+        }    ,
+
+        deleteBanner: (bannerId) => {
+            return new Promise((resolve, reject) => {
+                db.get().collection(collections.banner_collection).deleteOne({ _id: objectId(bannerId) }).then((response) => {
+    
+                    resolve(response)
+                })
+    
+            })
+        }
 
 
 }

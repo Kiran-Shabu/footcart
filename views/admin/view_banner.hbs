@@ -54,15 +54,15 @@
     <tr>
       <td>{{inc @index}}</td>
       
-      <td><img style="height:50px ;" src="/banner-images/{{this._id}}.jpg" alt=""></td>
+      <td><img style="height:50px ;" src="/pictures/product/bannerimg/{{this.image}}" alt=""></td>
       <td>
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#basicModal">Delete</button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#basicModal{{this._id}}">Delete</button>
           
       </td>
 
     </tr>
     </button>
-              <div class="modal fade" id="basicModal" tabindex="-1">
+              <div class="modal fade" id="basicModal{{this._id}}" tabindex="-1">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -70,11 +70,11 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      Are you sure you want to delete {{this.Cname}}?
+                      Are you sure you want to delete ?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                      <a href="/admin/delete-category/{{this._id}}" class="btn btn-danger" style="width: 5px;">Confirm</a>
+                      <a href="/admin/delete-banner/{{this._id}}" class="btn btn-danger" style="width: 5px;">Confirm</a>
                       {{!-- <button type="button" class="btn btn-primary">Confirm</button> --}}
                     </div>
                   </div>

@@ -5,7 +5,7 @@ const categoryHelpers = require('../helpers/category-helpers')
 const productHelpers = require('../helpers/product-helpers');
 const bannerHelpers = require('../helpers/banner-helpers');
 const { Router } = require('express');
-const { upload, upload2 } = require('../public/javascripts/fileupload');
+const { upload, upload2, upload3 } = require('../public/javascripts/fileupload');
 const orderHelpers = require('../helpers/order-Helpers');
 const salesHelpers = require('../helpers/sales-helpers');
 const offerHelpers = require('../helpers/offer-helpers');
@@ -102,20 +102,25 @@ router.get('/addbanner', (req, res) => {
   res.render('admin/add_banner', { admin: true })
 })
 
-router.post('/add-banner', (req, res, next) => {
-  bannerHelpers.addBanner(req.body).then((id) => {
-    let image = req.files.Bimage
-    image.mv('./public/banner-images/' + id + '.jpg', (err, done) => {
-      if (!err) {
+router.post('/add-banner',upload3.array('Bimage'), (req, res, next) => {
+  const banner = req.body
+  console.log("555555555");
+  console.log(banner);
+banner.image = req.files[0].filename
+  bannerHelpers.addBanner(banner).then((id) => {
+   
         res.redirect("/admin/addbanner")
-      }
-      else {
-        console.log(err);
-      }
-    })
+  })
 
   })
-})
+  router.get('/delete-banner/:id', (req, res) => {
+    let bannerId = req.params.id
+  
+    bannerHelpers.deleteBanner(bannerId).then((response) => {
+      res.redirect('/admin/bannerlist')
+    })
+  
+  })
 // ------------------------------------------------------product managment--------------------------------------------
 
 router.get('/productlist', (req, res, next) => {

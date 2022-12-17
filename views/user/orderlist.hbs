@@ -241,9 +241,10 @@
                                     <th scope="col">Amount</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <th scope="col">Payment </th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">view order</th>
-                                    <th scope="col">Cancel</th>
+                                    {{!-- <th scope="col">Status</th> --}}
+                                    
+                                    {{!-- <th scope="col">Cancel</th> --}}
 
 
 
@@ -259,11 +260,11 @@
                                         <br>{{this.deliveryDetails.address}},<br>{{this.deliveryDetails.pincode}}
                                     </td>
                                     <td>{{this.deliveryDetails.mobile}}</td>
-                                    <td>{{this.totalAmount}}</td>
+                                    <td> ₹{{this.totalAmount}}</td>
                                     <td>{{this.paymentMethod}}</td>
-                                    <td>{{this.status}}</td>
+                                    {{!-- <td>{{this.status}}</td> --}}
                                     <td> <a href="/view-order-products/{{this._id}}" class="btn btn-primary">View Products</a></td>
-                                     <td> <a href="/cancel-order/{{this._id}}" class="btn btn-danger">Cancel Order</a></td>
+                                     {{!-- <td> <a href="/cancel-order/{{this._id}}" class="btn btn-danger">Cancel Order</a></td> --}}
                                     <td></td>
 
 

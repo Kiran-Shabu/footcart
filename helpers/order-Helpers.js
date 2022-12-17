@@ -44,6 +44,8 @@ module.exports = {
                 products: products,
                 totalAmount: total,
                 status: status,
+                offerName:order.couponName,
+                offerPercentage :parseInt(order.Cpercentage),
                 date: date,
                 month: month,
                 year: year,

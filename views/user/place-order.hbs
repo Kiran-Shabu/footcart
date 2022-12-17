@@ -419,15 +419,15 @@
 
                                                     <tr class="summary-subtotal">
                                                         <td>Subtotal:</td>
-                                                        <td id="tottalAmount">₹ {{total}} /-</td>
+                                                        <td >₹ {{total}} /-</td>
                                                         <input type="text" id="total" value="{{total}}" hidden>
                                                         <input type="text" id="newTotal" value="" name="newTotal"
                                                             hidden>
                                                         {{!-- <input type="text" id --}} </tr>
                                                         <!-- End .summary-subtotal -->
                                                     <tr>
-                                                        <td>Shipping:</td>
-                                                        <td>Free shipping</td>
+                                                        <td class="text-warning" id="couponApplied"></td>
+                                                        <td id="tottalAmount">₹ {{total}} /-</td>
                                                     </tr>
 
                                                 </tbody>
@@ -1027,6 +1027,7 @@
 
                     document.getElementById("tottalAmount").innerHTML = Math.ceil(finalPrice)
                     document.getElementById("newTotal").value = Math.ceil(finalPrice)
+                    document.getElementById("couponApplied").innerHTML="Coupon applied"
                     $('.modal').modal('hide')
                     $('body').removeClass('modal-open')
                     $('.modal-backdrop').remove()

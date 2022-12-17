@@ -123,7 +123,20 @@
                 <div class="row mb-3">
                   <label for="inputImage" class="col-sm-2 col-form-label">File Upload</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" id="image" name="image" multiple >
+                    {{!-- <input class="form-control" type="file" id="image" name="image" multiple > --}}
+                    <div class="col-sm-10">
+                                    <div class="col-sm-10 mb-4" style="display: none;" id="showImg">
+                                        <img src="" style="height: auto; width:100px;" id="imgId">
+                                        <img src="" style="height: auto; width:100px;" id="imgId2">
+                                        <img src="" style="height: auto; width:100px;" id="imgId3">
+                                        <img src="" style="height: auto; width:100px;" id="imgId4">
+
+                                    </div>
+                                    <input type="file" accept="image/gif, image/jpeg, image/png" name="image"
+                                        class="form-control" id="formFile" onchange="displayImg(event)"
+                                        accept="image/gif, image/jpeg, image/png" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" multiple />
+                                </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -145,7 +158,38 @@
     </section>
    </main> 
 
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row" id="test">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+    function displayImg(event) {
+        document.getElementById('showImg').style.display = 'block';
+        document.getElementById('imgId').src = URL.createObjectURL(event.target.files[0])
+        document.getElementById('imgId2').src = URL.createObjectURL(event.target.files[1])
+        document.getElementById('imgId3').src = URL.createObjectURL(event.target.files[2])
+        document.getElementById('imgId4').src = URL.createObjectURL(event.target.files[3])
+
+
+    }
+</script>
 
 <!-- Vendor JS Files -->
   <script src="/admin-assets/vendor/apexcharts/apexcharts.min.js"></script>
